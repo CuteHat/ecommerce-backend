@@ -6,5 +6,5 @@ import com.example.iam.model.RegistrationRequest;
 public interface UserService {
     UserEntity create(RegistrationRequest request);
 
-    UserEntity getByEmail(String email);
+    UserEntity findByEmail(String email);
 }

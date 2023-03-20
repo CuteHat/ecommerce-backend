@@ -33,7 +33,7 @@ public class JwtServiceImpl implements JwtService {
                 .withSubject(sub)
                 .withIssuer(properties.getIssuer())
                 .withAudience(properties.getAudience())
-                .withClaim(JwtClaim.ROLES.name(), roles)
+                .withClaim(JwtClaim.ROLES.value, roles)
                 .withExpiresAt(Instant.now().plusSeconds(properties.getExpiration() * 60))
                 .sign(signAlgorithm);
     }
@@ -42,8 +42,8 @@ public class JwtServiceImpl implements JwtService {
     public String generateIdToken(String sub, String email, String name) {
         return JWT.create()
                 .withSubject(sub)
-                .withClaim(JwtClaim.EMAIL.name(), email)
-                .withClaim(JwtClaim.NAME.name(), name)
+                .withClaim(JwtClaim.EMAIL.value, email)
+                .withClaim(JwtClaim.NAME.value, name)
                 .withExpiresAt(Instant.now().plusSeconds(properties.getExpiration() * 60))
                 .sign(signAlgorithm);
     }

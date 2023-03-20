@@ -5,7 +5,7 @@ public enum JwtClaim {
     EMAIL("email"),
     ROLES("roles");
 
-    final String value;
+    public final String value;
 
     JwtClaim(String value) {
         this.value = value;

@@ -5,10 +5,10 @@ import com.example.iam.entity.UserEntity;
 import com.example.iam.model.AuthResponse;
 import com.example.iam.model.LoginRequest;
 import com.example.iam.model.RegistrationRequest;
+import com.example.iam.service.AuthServiceFacade;
 import com.example.iam.service.JwtService;
 import com.example.iam.service.RoleService;
 import com.example.iam.service.UserService;
-import com.example.iam.service.UserServiceFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +17,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class UserServiceFacadeImpl implements UserServiceFacade {
+public class AuthServiceFacadeImpl implements AuthServiceFacade {
     private final UserService userService;
     private final JwtService jwtService;
     private final RoleService roleService;

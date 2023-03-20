@@ -3,7 +3,7 @@ package com.example.iam.controller;
 import com.example.iam.model.AuthResponse;
 import com.example.iam.model.LoginRequest;
 import com.example.iam.model.RegistrationRequest;
-import com.example.iam.service.UserServiceFacade;
+import com.example.iam.service.AuthServiceFacade;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/v1/auth")
 @RequiredArgsConstructor
 public class AuthController {
-    private final UserServiceFacade service;
+    private final AuthServiceFacade service;
 
     @PostMapping("/register")
     public ResponseEntity<AuthResponse> register(@Valid @RequestBody RegistrationRequest request) {

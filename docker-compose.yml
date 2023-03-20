@@ -1,0 +1,16 @@
+version: '3.9'
+
+services:
+  postgres-db:
+    image: postgres:13.6-bullseye
+    restart: always
+    container_name: postgres-db
+    hostname: postgres-db
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: toor
+      POSTGRES_USER: root
+      POSTGRES_DB: db
+    ports:
+      - "5432:5432"

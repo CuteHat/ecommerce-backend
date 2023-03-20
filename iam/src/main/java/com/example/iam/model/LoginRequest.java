@@ -10,13 +10,10 @@ import org.hibernate.validator.constraints.Length;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class RegistrationRequest {
+public class LoginRequest {
     @NotEmpty
     @Email
     private String email;
-    @NotEmpty
-    @Length(max = 64)
-    private String name;
     @NotEmpty
     @Length(min = 8, max = 64)
     private String password;

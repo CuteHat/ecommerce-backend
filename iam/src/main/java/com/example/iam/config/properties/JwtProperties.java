@@ -1,4 +1,4 @@
-package com.example.iam.config;
+package com.example.iam.config.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 

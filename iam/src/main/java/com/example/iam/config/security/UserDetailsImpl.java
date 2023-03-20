@@ -1,4 +1,4 @@
-package com.example.iam.config;
+package com.example.iam.config.security;
 
 import com.example.iam.entity.UserEntity;
 import org.springframework.security.core.GrantedAuthority;

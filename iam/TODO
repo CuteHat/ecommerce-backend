@@ -6,6 +6,7 @@
 * Create audit service that stores user actions
 * Unit tests
 * DockerFile for project
+* add code comments
 * Readme.md file for project
 
 * Docker-compose file to run Database ? maybe outside of project

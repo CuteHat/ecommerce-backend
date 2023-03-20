@@ -1,6 +1,7 @@
-package com.example.iam.service;
+package com.example.iam.service.impl;
 
-import com.example.iam.config.UserDetailsImpl;
+import com.example.iam.config.security.UserDetailsImpl;
+import com.example.iam.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

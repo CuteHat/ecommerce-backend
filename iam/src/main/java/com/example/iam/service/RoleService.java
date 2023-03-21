@@ -1,7 +1,7 @@
 package com.example.iam.service;
 
-import com.example.iam.entity.RoleEntity;
-import com.example.iam.entity.model.Role;
+import com.example.iam.peristence.entity.RoleEntity;
+import com.example.iam.peristence.model.Role;
 
 public interface RoleService {
     RoleEntity getRoleByName(Role name);

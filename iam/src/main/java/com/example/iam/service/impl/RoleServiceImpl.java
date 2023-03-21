@@ -1,8 +1,8 @@
 package com.example.iam.service.impl;
 
-import com.example.iam.entity.RoleEntity;
-import com.example.iam.entity.model.Role;
-import com.example.iam.repository.RoleRepository;
+import com.example.iam.peristence.entity.RoleEntity;
+import com.example.iam.peristence.model.Role;
+import com.example.iam.peristence.repository.RoleRepository;
 import com.example.iam.service.RoleService;
 import com.example.iam.util.HandledExceptionFactory;
 import lombok.RequiredArgsConstructor;

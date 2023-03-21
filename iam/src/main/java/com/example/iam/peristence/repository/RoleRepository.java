@@ -1,7 +1,7 @@
-package com.example.iam.repository;
+package com.example.iam.peristence.repository;
 
-import com.example.iam.entity.RoleEntity;
-import com.example.iam.entity.model.Role;
+import com.example.iam.peristence.entity.RoleEntity;
+import com.example.iam.peristence.model.Role;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

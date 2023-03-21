@@ -1,14 +1,15 @@
 package com.example.iam.service.impl;
 
-import com.example.iam.entity.RoleEntity;
-import com.example.iam.entity.UserEntity;
 import com.example.iam.model.AuthResponse;
 import com.example.iam.model.LoginRequest;
 import com.example.iam.model.RegistrationRequest;
+import com.example.iam.peristence.entity.RoleEntity;
+import com.example.iam.peristence.entity.UserEntity;
 import com.example.iam.service.AuthServiceFacade;
 import com.example.iam.service.JwtService;
 import com.example.iam.service.RoleService;
 import com.example.iam.service.UserService;
+import com.example.iam.util.HandledExceptionFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -31,6 +32,7 @@ public class AuthServiceFacadeImpl implements AuthServiceFacade {
     @Override
     public AuthResponse login(LoginRequest request) {
         UserEntity user = userService.findByEmailAndPassword(request.getEmail(), request.getPassword());
+        if (!user.getActive()) throw HandledExceptionFactory.getHandledException("User is deactivated");
         return getAuthResponse(user);
     }
 

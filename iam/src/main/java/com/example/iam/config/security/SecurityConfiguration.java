@@ -1,15 +1,20 @@
 package com.example.iam.config.security;
 
+import com.example.iam.peristence.model.Role;
+import com.example.iam.service.JwtService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -18,7 +23,10 @@ import java.util.Arrays;
 import java.util.List;
 
 @Configuration
+@EnableWebSecurity
+@RequiredArgsConstructor
 public class SecurityConfiguration {
+    private final JwtService jwtService;
     @Value("${cors.allowed.origin.list}")
     private List<String> allowedOrigins;
 
@@ -39,7 +47,12 @@ public class SecurityConfiguration {
                     authorizeCustomizer.requestMatchers("/swagger-ui/**").permitAll();
                     // auth controller
                     authorizeCustomizer.requestMatchers("/api/v1/auth/**").permitAll();
+                    // user controller, only for authenticated users
+                    authorizeCustomizer.requestMatchers("/api/v1/user/**").authenticated();
+                    // admin controller
+                    authorizeCustomizer.requestMatchers("/api/v1/admin/**").hasRole(Role.ADMINISTRATOR.name());
                 })
+                .addFilterBefore(new JwtAuthenticationFilter(jwtService), UsernamePasswordAuthenticationFilter.class)
                 .cors().configurationSource(getCorsConfiguration()).and();
         return httpSecurity.build();
     }

@@ -1,11 +1,12 @@
-package com.example.iam.entity;
+package com.example.iam.peristence.entity;
 
-import com.example.iam.entity.model.Role;
+import com.example.iam.peristence.model.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.FieldNameConstants;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -13,6 +14,7 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "roles")
+@FieldNameConstants
 public class RoleEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

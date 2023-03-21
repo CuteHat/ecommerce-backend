@@ -1,4 +1,4 @@
-package com.example.iam.entity.model;
+package com.example.iam.peristence.model;
 
 public enum Role {
     ADMINISTRATOR,

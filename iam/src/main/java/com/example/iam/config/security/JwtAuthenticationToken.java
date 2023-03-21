@@ -1,18 +1,17 @@
 package com.example.iam.config.security;
 
 import org.springframework.security.authentication.AbstractAuthenticationToken;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.List;
+import java.util.Collection;
 
 public class JwtAuthenticationToken extends AbstractAuthenticationToken {
+    private final UserDetails subject;
 
-    private final String subject;
-    private final List<String> roles;
-
-    public JwtAuthenticationToken(String subject, List<String> roles) {
-        super(null);
+    public JwtAuthenticationToken(UserDetails subject, Collection<? extends GrantedAuthority> authorities) {
+        super(authorities);
         this.subject = subject;
-        this.roles = roles;
         setAuthenticated(true);
     }
 
@@ -26,7 +25,4 @@ public class JwtAuthenticationToken extends AbstractAuthenticationToken {
         return subject;
     }
 
-    public List<String> getRoles() {
-        return roles;
-    }
 }

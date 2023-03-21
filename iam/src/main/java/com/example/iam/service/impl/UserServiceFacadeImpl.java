@@ -7,6 +7,7 @@ import com.example.iam.service.UserService;
 import com.example.iam.service.UserServiceFacade;
 import com.example.iam.util.SecurityUtils;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestWrapper;
 import org.springframework.stereotype.Service;
 
 @Service

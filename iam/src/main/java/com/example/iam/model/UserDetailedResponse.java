@@ -5,6 +5,7 @@ import com.example.iam.peristence.entity.UserEntity;
 import com.example.iam.peristence.model.Role;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
@@ -12,6 +13,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 @Builder
 public class UserDetailedResponse {
     private Long id;

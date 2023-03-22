@@ -1,0 +1,5 @@
+Security
+* Create method that validates passed jwt
+* Create method that returns user id from jwt
+* Create method that validates audience and issuer
+

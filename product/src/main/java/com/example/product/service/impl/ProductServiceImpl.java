@@ -16,10 +16,12 @@ import java.util.Map;
 public class ProductServiceImpl implements ProductService {
     private final ProductRepository repository;
 
+    @Override
     public List<ProductEntity> getProducts() {
         return repository.findAll();
     }
 
+    @Override
     public ProductEntity getProduct(Long id) {
         return repository
                 .findById(id)
@@ -32,6 +34,7 @@ public class ProductServiceImpl implements ProductService {
      * @param products a map of product IDs and quantities to decrement.
      * @return a map of product IDs and updated ProductEntity objects.
      */
+    @Override
     public Map<Long, ProductEntity> decrementStockBatch(Map<Long, Integer> products) {
         Map<Long, ProductEntity> updatedProducts = new HashMap<>();
         for (Map.Entry<Long, Integer> entry : products.entrySet()) {
@@ -43,6 +46,7 @@ public class ProductServiceImpl implements ProductService {
         return updatedProducts;
     }
 
+    @Override
     public ProductEntity decrementStock(Long id, Integer quantity) {
         ProductEntity product = getProduct(id);
         product.setStock(product.getStock() - quantity);
@@ -55,6 +59,7 @@ public class ProductServiceImpl implements ProductService {
      * @param products a map of product IDs and quantities to check.
      * @return a map of product IDs and availability status.
      */
+    @Override
     public Map<Long, Boolean> productStockIsAvailableBatch(Map<Long, Integer> products) {
         Map<Long, Boolean> stockAvailabilityMap = new HashMap<>();
         for (Map.Entry<Long, Integer> entry : products.entrySet()) {
@@ -65,6 +70,7 @@ public class ProductServiceImpl implements ProductService {
         return stockAvailabilityMap;
     }
 
+    @Override
     public Boolean productStockIsAvailable(Long id, Integer quantity) {
         ProductEntity product = getProduct(id);
         return product.getStock() >= quantity;

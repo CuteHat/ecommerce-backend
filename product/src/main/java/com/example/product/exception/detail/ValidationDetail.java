@@ -1,6 +1,6 @@
 package com.example.product.exception.detail;
 
-import com.example.iam.exception.model.FieldValidationError;
+import com.example.product.exception.model.FieldValidationError;
 import lombok.Getter;
 
 import java.util.List;

@@ -1,9 +1,9 @@
 package com.example.product.exception.advice;
 
-import com.example.iam.exception.HandledException;
-import com.example.iam.exception.detail.HandledExceptionDetail;
-import com.example.iam.exception.detail.ValidationDetail;
-import com.example.iam.exception.model.FieldValidationError;
+import com.example.product.exception.HandledException;
+import com.example.product.exception.detail.HandledExceptionDetail;
+import com.example.product.exception.detail.ValidationDetail;
+import com.example.product.exception.model.FieldValidationError;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;

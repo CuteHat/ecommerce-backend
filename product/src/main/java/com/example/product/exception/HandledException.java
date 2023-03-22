@@ -1,6 +1,6 @@
 package com.example.product.exception;
 
-import com.example.iam.exception.detail.HandledExceptionDetail;
+import com.example.product.exception.detail.HandledExceptionDetail;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
 

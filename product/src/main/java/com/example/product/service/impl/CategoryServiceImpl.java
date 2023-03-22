@@ -14,11 +14,13 @@ import java.util.List;
 public class CategoryServiceImpl implements CategoryService {
     private final CategoryRepository repository;
 
+    @Override
     public List<CategoryEntity> getCategories() {
         return repository.findAll();
     }
 
-    private CategoryEntity getCategory(Long id) {
+    @Override
+    public CategoryEntity getCategory(Long id) {
         return repository.findById(id).orElseThrow(() -> HandledExceptionFactory.getHandledException("Category not found"));
     }
 }

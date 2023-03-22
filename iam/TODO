@@ -8,6 +8,9 @@
 * DockerFile for project
 * add code comments
 * Readme.md file for project
+* Add role assignation for administrators
+* Fix exceptions responding with 401 status issue
+* Add phone number to user
 
 * Docker-compose file to run Database ? maybe outside of project
 -> Separate schemas

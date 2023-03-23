@@ -23,10 +23,8 @@ public class AdminController {
 
     @GetMapping("/{id}")
     public ResponseEntity<UserDetailedResponse> getUser(@PathVariable("id") @Min(1) Long id) {
-        throw HandledExceptionFactory.getHandledException("TEST");
-
-//        UserDetailedResponse user = userServiceFacade.get(id);
-//        return ResponseEntity.ok(user);
+        UserDetailedResponse user = userServiceFacade.get(id);
+        return ResponseEntity.ok(user);
     }
 
     @GetMapping("/filter")

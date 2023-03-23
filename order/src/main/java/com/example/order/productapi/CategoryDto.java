@@ -1,4 +1,4 @@
-package com.example.pad.productapi;
+package com.example.order.productapi;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

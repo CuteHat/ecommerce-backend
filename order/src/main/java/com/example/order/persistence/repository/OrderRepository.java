@@ -1,6 +1,6 @@
 package com.example.order.persistence.repository;
 
-import com.example.order.persistence.entity.OrderEntity;
+import com.example.pad.persistence.entity.OrderEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

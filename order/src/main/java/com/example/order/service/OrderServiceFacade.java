@@ -1,4 +1,2 @@
-package com.example.order.service;
-
-public interface OrderServiceFacade {
+package com.example.order.service;public interface OrderServiceFacade {
 }

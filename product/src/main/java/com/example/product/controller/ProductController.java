@@ -1,5 +1,6 @@
 package com.example.product.controller;
 
+import com.example.product.model.DecrementStockDto;
 import com.example.product.model.ProductDto;
 import com.example.product.service.ProductServiceFacade;
 import jakarta.validation.constraints.Min;
@@ -8,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
@@ -31,19 +31,19 @@ public class ProductController {
         return ResponseEntity.ok(productServiceFacade.decrementStock(id, quantity));
     }
 
-    @PutMapping("/stock")
-    public ResponseEntity<Void> decrementStockBatch(@RequestBody Map<Long, Integer> products) {
+    @PutMapping("/stock/batch")
+    public ResponseEntity<Void> decrementStockBatch(@RequestBody List<DecrementStockDto> products) {
         productServiceFacade.decrementStockBatch(products);
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/{id}/stock")
+    @GetMapping("/{id}/stock/available")
     public ResponseEntity<Boolean> productStockIsAvailable(@PathVariable @Min(1) Long id, @RequestParam @Min(1) Integer quantity) {
         return ResponseEntity.ok(productServiceFacade.productStockIsAvailable(id, quantity));
     }
 
-    @GetMapping("/stock")
-    public ResponseEntity<Boolean> productStockIsAvailableBatch(@RequestBody Map<Long, Integer> products) {
+    @PostMapping("/stock/available/batch")
+    public ResponseEntity<Boolean> productStockIsAvailableBatch(@RequestBody List<DecrementStockDto> products) {
         return ResponseEntity.ok(productServiceFacade.productStockIsAvailableBatch(products));
     }
 }

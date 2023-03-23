@@ -1,9 +1,9 @@
 package com.example.product.service;
 
+import com.example.product.model.DecrementStockDto;
 import com.example.product.model.ProductDto;
 
 import java.util.List;
-import java.util.Map;
 
 public interface ProductServiceFacade {
     List<ProductDto> getProducts();
@@ -12,9 +12,9 @@ public interface ProductServiceFacade {
 
     ProductDto decrementStock(Long id, Integer quantity);
 
-    void decrementStockBatch(Map<Long, Integer> products);
+    void decrementStockBatch(List<DecrementStockDto> products);
 
     Boolean productStockIsAvailable(Long id, Integer quantity);
 
-    Boolean productStockIsAvailableBatch(Map<Long, Integer> products);
+    Boolean productStockIsAvailableBatch(List<DecrementStockDto> products);
 }

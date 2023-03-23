@@ -1,5 +1,6 @@
 package com.example.product.service.impl;
 
+import com.example.product.model.DecrementStockDto;
 import com.example.product.model.ProductDto;
 import com.example.product.service.ProductService;
 import com.example.product.service.ProductServiceFacade;
@@ -31,8 +32,9 @@ public class ProductServiceFacadeImpl implements ProductServiceFacade {
     }
 
     @Override
-    public void decrementStockBatch(Map<Long, Integer> products) {
-        productService.decrementStockBatch(products);
+    public void decrementStockBatch(List<DecrementStockDto> products) {
+        Map<Long, Integer> decrementStockMap = products.stream().collect(Collectors.toMap(DecrementStockDto::getId, DecrementStockDto::getQuantity));
+        productService.decrementStockBatch(decrementStockMap);
     }
 
     @Override
@@ -41,9 +43,12 @@ public class ProductServiceFacadeImpl implements ProductServiceFacade {
     }
 
     @Override
-    public Boolean productStockIsAvailableBatch(Map<Long, Integer> products) {
+    public Boolean productStockIsAvailableBatch(List<DecrementStockDto> products) {
+        Map<Long, Integer> productsAvailableMap = products
+                .stream()
+                .collect(Collectors.toMap(DecrementStockDto::getId, DecrementStockDto::getQuantity));
         return productService
-                .productStockIsAvailableBatch(products)
+                .productStockIsAvailableBatch(productsAvailableMap)
                 .entrySet()
                 .stream()
                 .allMatch(Map.Entry::getValue);

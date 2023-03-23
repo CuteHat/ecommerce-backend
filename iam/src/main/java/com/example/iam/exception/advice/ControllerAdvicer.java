@@ -26,6 +26,11 @@ import java.util.stream.StreamSupport;
 @Slf4j
 @ControllerAdvice
 public class ControllerAdvicer {
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<HandledExceptionDetail> defaultHandler(Exception exception) {
+        log.error(exception.toString());
+        return new ResponseEntity<>(new HandledExceptionDetail("Internal server error"), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 
     @ExceptionHandler(HandledException.class)
     public ResponseEntity<HandledExceptionDetail> handleHandledException(HandledException exception) {

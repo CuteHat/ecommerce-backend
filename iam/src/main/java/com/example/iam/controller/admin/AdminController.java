@@ -4,6 +4,7 @@ import com.example.iam.model.UserDetailedResponse;
 import com.example.iam.model.UserUpdateRequest;
 import com.example.iam.peristence.model.Role;
 import com.example.iam.service.AdminUserServiceFacade;
+import com.example.iam.util.HandledExceptionFactory;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
 import lombok.RequiredArgsConstructor;
@@ -22,8 +23,10 @@ public class AdminController {
 
     @GetMapping("/{id}")
     public ResponseEntity<UserDetailedResponse> getUser(@PathVariable("id") @Min(1) Long id) {
-        UserDetailedResponse user = userServiceFacade.get(id);
-        return ResponseEntity.ok(user);
+        throw HandledExceptionFactory.getHandledException("TEST");
+
+//        UserDetailedResponse user = userServiceFacade.get(id);
+//        return ResponseEntity.ok(user);
     }
 
     @GetMapping("/filter")

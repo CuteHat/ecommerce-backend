@@ -1,4 +1,3 @@
-* flyway migrations to Prefill database with users only for development environment
 * Unit tests
 * DockerFile for project
 * add code comments

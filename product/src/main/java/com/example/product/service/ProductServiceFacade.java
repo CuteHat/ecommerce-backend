@@ -17,4 +17,6 @@ public interface ProductServiceFacade {
     Boolean productStockIsAvailable(Long id, Integer quantity);
 
     Boolean productStockIsAvailableBatch(List<DecrementStockDto> products);
+
+    List<ProductDto> filter(List<Long> id);
 }

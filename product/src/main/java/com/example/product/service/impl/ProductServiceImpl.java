@@ -76,4 +76,9 @@ public class ProductServiceImpl implements ProductService {
         return product.getStock() >= quantity;
     }
 
+    @Override
+    public List<ProductEntity> filter(List<Long> ids) {
+        return repository.findAllByIdIn(ids);
+    }
+
 }

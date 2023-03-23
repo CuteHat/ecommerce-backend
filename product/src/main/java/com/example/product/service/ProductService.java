@@ -17,4 +17,6 @@ public interface ProductService {
     Map<Long, Boolean> productStockIsAvailableBatch(Map<Long, Integer> products);
 
     Boolean productStockIsAvailable(Long id, Integer quantity);
+
+    List<ProductEntity> filter(List<Long> ids);
 }

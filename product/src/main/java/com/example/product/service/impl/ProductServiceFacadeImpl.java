@@ -53,4 +53,12 @@ public class ProductServiceFacadeImpl implements ProductServiceFacade {
                 .stream()
                 .allMatch(Map.Entry::getValue);
     }
+
+    @Override
+    public List<ProductDto> filter(List<Long> ids) {
+        return productService.filter(ids)
+                .stream()
+                .map(ProductDto::transform)
+                .collect(Collectors.toList());
+    }
 }

@@ -46,4 +46,9 @@ public class ProductController {
     public ResponseEntity<Boolean> productStockIsAvailableBatch(@RequestBody List<DecrementStockDto> products) {
         return ResponseEntity.ok(productServiceFacade.productStockIsAvailableBatch(products));
     }
+
+    @GetMapping("filter")
+    public ResponseEntity<List<ProductDto>> getAllByIds(@RequestParam List<Long> ids) {
+        return ResponseEntity.ok(productServiceFacade.filter(ids));
+    }
 }

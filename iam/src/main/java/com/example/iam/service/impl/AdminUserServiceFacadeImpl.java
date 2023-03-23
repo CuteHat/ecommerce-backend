@@ -1,9 +1,12 @@
 package com.example.iam.service.impl;
 
 import com.example.iam.model.UserDetailedResponse;
+import com.example.iam.model.UserUpdateRequest;
+import com.example.iam.peristence.entity.RoleEntity;
 import com.example.iam.peristence.entity.UserEntity;
 import com.example.iam.peristence.model.Role;
 import com.example.iam.service.AdminUserServiceFacade;
+import com.example.iam.service.RoleService;
 import com.example.iam.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -18,6 +21,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class AdminUserServiceFacadeImpl implements AdminUserServiceFacade {
     private final UserService userService;
+    private final RoleService roleService;
 
     @Override
     public UserDetailedResponse get(Long id) {
@@ -48,8 +52,15 @@ public class AdminUserServiceFacadeImpl implements AdminUserServiceFacade {
     }
 
     @Override
-    public UserDetailedResponse update(Long id, String name, String email, String password) {
-        UserEntity user = userService.update(id, name, email, password);
+    public UserDetailedResponse update(Long id, UserUpdateRequest request) {
+        UserEntity user = userService.update(id, request);
+        return UserDetailedResponse.transform(user);
+    }
+
+    @Override
+    public UserDetailedResponse updateRole(Long id, Role role) {
+        RoleEntity roleEntity = roleService.getRoleByName(role);
+        UserEntity user = userService.updateRoles(id, List.of(roleEntity));
         return UserDetailedResponse.transform(user);
     }
 

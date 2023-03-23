@@ -1,6 +1,7 @@
 package com.example.iam.service;
 
 import com.example.iam.model.UserDetailedResponse;
+import com.example.iam.model.UserUpdateRequest;
 import com.example.iam.peristence.model.Role;
 import org.springframework.data.domain.Page;
 
@@ -22,5 +23,7 @@ public interface AdminUserServiceFacade {
 
     void activate(Long id);
 
-    UserDetailedResponse update(Long id, String name, String email, String password);
+    UserDetailedResponse update(Long id, UserUpdateRequest request);
+
+    UserDetailedResponse updateRole(Long id, Role role);
 }

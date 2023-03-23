@@ -1,8 +1,10 @@
 package com.example.iam.controller.admin;
 
 import com.example.iam.model.UserDetailedResponse;
+import com.example.iam.model.UserUpdateRequest;
 import com.example.iam.peristence.model.Role;
 import com.example.iam.service.AdminUserServiceFacade;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.Min;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -38,10 +40,15 @@ public class AdminController {
 
     @PutMapping("/{id}")
     public ResponseEntity<UserDetailedResponse> updateUser(@PathVariable("id") Long id,
-                                                           @RequestParam(required = false) String name,
-                                                           @RequestParam(required = false) String email,
-                                                           @RequestParam(required = false) String password) {
-        UserDetailedResponse user = userServiceFacade.update(id, name, email, password);
+                                                           @RequestBody @Valid UserUpdateRequest userUpdateRequest) {
+        UserDetailedResponse user = userServiceFacade.update(id, userUpdateRequest);
+        return ResponseEntity.ok(user);
+    }
+
+    @PatchMapping("/{id}/role")
+    public ResponseEntity<UserDetailedResponse> updateUserRole(@PathVariable("id") @Min(1) Long id,
+                                                               @RequestBody Role role) {
+        UserDetailedResponse user = userServiceFacade.updateRole(id, role);
         return ResponseEntity.ok(user);
     }
 

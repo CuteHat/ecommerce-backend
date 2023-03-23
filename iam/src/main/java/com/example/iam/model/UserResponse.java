@@ -12,8 +12,15 @@ public class UserResponse {
     private Long id;
     private String email;
     private String name;
+    private String phone;
+    private String address;
 
     public static UserResponse transform(UserEntity entity) {
-        return new UserResponse(entity.getId(), entity.getEmail(), entity.getName());
+        return new UserResponse(
+                entity.getId(),
+                entity.getEmail(),
+                entity.getName(),
+                entity.getPhone(),
+                entity.getAddress());
     }
 }

@@ -1,6 +1,7 @@
 package com.example.iam.service.impl;
 
 import com.example.iam.model.RegistrationRequest;
+import com.example.iam.model.UserUpdateRequest;
 import com.example.iam.peristence.entity.RoleEntity;
 import com.example.iam.peristence.entity.UserEntity;
 import com.example.iam.peristence.model.Role;
@@ -30,10 +31,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserEntity create(RegistrationRequest request, Collection<RoleEntity> roles) {
-        return create(request.getEmail(), request.getName(), request.getPassword(), roles);
+        return create(request.getEmail(), request.getName(), request.getPassword(), request.getPhone(), request.getAddress(), roles);
     }
 
-    public UserEntity create(String email, String name, String password, Collection<RoleEntity> roles) {
+    public UserEntity create(String email, String name, String password, String phone, String address, Collection<RoleEntity> roles) {
         validateEmail(email);
 
         UserEntity user = new UserEntity();
@@ -41,6 +42,8 @@ public class UserServiceImpl implements UserService {
         user.setName(name);
         user.setPassword(passwordEncoder.encode(password));
         user.setRoles(roles);
+        user.setPhone(phone);
+        user.setAddress(address);
         return repository.save(user);
     }
 
@@ -70,17 +73,24 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserEntity update(Long userId, String name, String email, String password) {
-        return update(findById(userId), name, email, password);
+    public UserEntity update(Long userId, UserUpdateRequest request) {
+        return update(userId, request.getName(), request.getEmail(), request.getPassword(), request.getPhone(), request.getAddress());
     }
 
-    public UserEntity update(UserEntity user, String name, String email, String password) {
+    @Override
+    public UserEntity update(Long userId, String name, String email, String password, String phone, String address) {
+        return update(findById(userId), name, email, password, phone, address);
+    }
+
+    public UserEntity update(UserEntity user, String name, String email, String password, String phone, String address) {
         if (!user.getEmail().equals(email))
             validateEmail(email);
 
         user.setName(name);
         user.setEmail(email);
         user.setPassword(passwordEncoder.encode(password));
+        user.setPhone(phone);
+        user.setAddress(address);
         return repository.save(user);
     }
 
@@ -114,4 +124,13 @@ public class UserServiceImpl implements UserService {
         return repository.findAll(spec, PageRequest.of(page, size));
     }
 
+    @Override
+    public UserEntity updateRoles(Long userId, Collection<RoleEntity> roles) {
+        return updateRoles(findById(userId), roles);
+    }
+
+    private UserEntity updateRoles(UserEntity user, Collection<RoleEntity> roles) {
+        user.setRoles(roles);
+        return repository.save(user);
+    }
 }

@@ -1,16 +1,6 @@
-* User registration
-* User profile view and modification
 * flyway migrations to Prefill database with users only for development environment
-* Store Roles/Permissions for user, Create Administrator,Seller and Client roles
-* User profile view and modification for administrator
-* Create audit service that stores user actions
 * Unit tests
 * DockerFile for project
 * add code comments
 * Readme.md file for project
-* Add role assignation for administrators
 * Fix exceptions responding with 401 status issue
-* Add phone number to user
-
-* Docker-compose file to run Database ? maybe outside of project
--> Separate schemas

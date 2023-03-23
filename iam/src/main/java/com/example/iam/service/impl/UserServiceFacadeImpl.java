@@ -1,13 +1,12 @@
 package com.example.iam.service.impl;
 
-import com.example.iam.peristence.entity.UserEntity;
 import com.example.iam.model.UserResponse;
 import com.example.iam.model.UserUpdateRequest;
+import com.example.iam.peristence.entity.UserEntity;
 import com.example.iam.service.UserService;
 import com.example.iam.service.UserServiceFacade;
 import com.example.iam.util.SecurityUtils;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestWrapper;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -23,7 +22,7 @@ public class UserServiceFacadeImpl implements UserServiceFacade {
 
     @Override
     public UserResponse update(UserUpdateRequest request) {
-        UserEntity user = userService.update(SecurityUtils.getAuthenticatedUserId(), request.getName(), request.getEmail(), request.getPassword());
+        UserEntity user = userService.update(SecurityUtils.getAuthenticatedUserId(), request);
         return UserResponse.transform(user);
     }
 

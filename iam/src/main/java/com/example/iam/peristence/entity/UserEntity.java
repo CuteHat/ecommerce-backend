@@ -30,6 +30,12 @@ public class UserEntity {
     @Column(nullable = false, length = 64)
     private String name;
 
+    @Column(nullable = false)
+    private String phone;
+
+    @Column(nullable = false)
+    private String address;
+
     @Column(nullable = false, length = 64)
     private String password;
 

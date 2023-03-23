@@ -1,6 +1,6 @@
-package com.example.pad.model;
+package com.example.order.model;
 
-import com.example.pad.persistence.entity.OrderItemEntity;
+import com.example.order.persistence.entity.OrderItemEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,7 +20,7 @@ public class OrderItemDto {
 
     public static OrderItemDto transform(OrderItemEntity entity) {
         return new OrderItemDto(
-                entity.getSystemOrderItemId(),
+                entity.getId(),
                 entity.getProductId(),
                 entity.getProductName(),
                 entity.getProductPrice(),

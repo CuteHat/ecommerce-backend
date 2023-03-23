@@ -1,6 +1,6 @@
 package com.example.order.model;
 
-import com.example.pad.productapi.ProductDto;
+import com.example.order.productapi.ProductDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

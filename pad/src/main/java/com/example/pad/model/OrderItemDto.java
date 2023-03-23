@@ -20,7 +20,7 @@ public class OrderItemDto {
 
     public static OrderItemDto transform(OrderItemEntity entity) {
         return new OrderItemDto(
-                entity.getId(),
+                entity.getSystemOrderItemId(),
                 entity.getProductId(),
                 entity.getProductName(),
                 entity.getProductPrice(),

@@ -1,4 +1,4 @@
-package com.example.notification.persistence.model;
+package com.example.order.model;
 
 public enum NotificationType {
     EMAIL,

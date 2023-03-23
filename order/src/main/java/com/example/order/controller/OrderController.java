@@ -1,2 +1,4 @@
-package com.example.order.controller;public class OrderController {
+package com.example.order.controller;
+
+public class OrderController {
 }

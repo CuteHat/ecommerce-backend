@@ -25,6 +25,7 @@ public class OrderEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private Long systemOrderId;
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private List<OrderItemEntity> orderItems = new ArrayList<>();
     private BigDecimal totalPrice;

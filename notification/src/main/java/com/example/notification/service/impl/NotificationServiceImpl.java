@@ -13,11 +13,11 @@ public class NotificationServiceImpl implements NotificationService {
     private final NotificationRepository repository;
 
     @Override
-    public NotificationEntity create(String message, NotificationType type, String destination, Long userId) {
+    public NotificationEntity create(String message, NotificationType type, String recipient, Long userId) {
         NotificationEntity entity = new NotificationEntity();
         entity.setMessage(message);
         entity.setType(type);
-        entity.setDestination(destination);
+        entity.setRecipient(recipient);
         entity.setUserId(userId);
         entity.setRead(false);
         return repository.save(entity);

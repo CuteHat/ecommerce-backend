@@ -1,4 +1,4 @@
-package com.example.pad.productapi;
+package com.example.order.productapi;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -13,8 +13,18 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class ProductApiServiceImpl implements ProductApiService {
+    private final RestTemplate restTemplate;
     @Value("${api.product.url}")
     private String baseUrl;
+
+    @Override
+    public Boolean stockAvailable(List<DecrementStockDto> products) {
+        String productsFilterEndpoint = "/stock/available/batch";
+        return restTemplate.postForObject(
+                baseUrl.concat(productsFilterEndpoint),
+                products,
+                Boolean.class);
+    }
 
     @Override
     public List<ProductDto> filter(List<Long> productIds) {

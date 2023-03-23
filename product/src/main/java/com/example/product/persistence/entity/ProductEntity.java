@@ -25,6 +25,7 @@ public class ProductEntity {
     private BigDecimal price;
     private Integer quantity;
     private Long sellerId;
+    private String sellerEmail;
     private Integer stock;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "category_id", nullable = false)

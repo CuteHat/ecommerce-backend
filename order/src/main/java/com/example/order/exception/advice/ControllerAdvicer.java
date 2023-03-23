@@ -1,9 +1,9 @@
-package com.example.pad.exception.advice;
+package com.example.order.exception.advice;
 
-import com.example.pad.exception.HandledException;
-import com.example.pad.exception.detail.HandledExceptionDetail;
-import com.example.pad.exception.detail.ValidationDetail;
-import com.example.pad.exception.model.FieldValidationError;
+import com.example.order.exception.HandledException;
+import com.example.order.exception.detail.HandledExceptionDetail;
+import com.example.order.exception.detail.ValidationDetail;
+import com.example.order.exception.model.FieldValidationError;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;

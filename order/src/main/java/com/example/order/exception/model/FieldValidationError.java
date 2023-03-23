@@ -1,4 +1,4 @@
-package com.example.pad.exception.model;
+package com.example.order.exception.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

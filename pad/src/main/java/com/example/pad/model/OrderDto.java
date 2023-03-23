@@ -19,7 +19,7 @@ public class OrderDto {
 
     public static OrderDto transform(OrderEntity orderEntity) {
         return new OrderDto(
-                orderEntity.getId(),
+                orderEntity.getSystemOrderId(),
                 orderEntity.getOrderItems().stream().map(OrderItemDto::transform).toList(),
                 orderEntity.getTotalPrice(),
                 orderEntity.getCustomerId()

@@ -20,7 +20,7 @@ public class NotificationEntity {
     private String message;
     @Enumerated(EnumType.STRING)
     private NotificationType type;
-    private String destination;
+    private String recipient;
     private boolean isRead;
     private Long userId;
 }

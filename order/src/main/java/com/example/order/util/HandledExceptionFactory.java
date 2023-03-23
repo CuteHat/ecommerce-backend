@@ -1,7 +1,7 @@
-package com.example.pad.util;
+package com.example.order.util;
 
-import com.example.pad.exception.HandledException;
-import com.example.pad.exception.detail.HandledExceptionDetail;
+import com.example.order.exception.HandledException;
+import com.example.order.exception.detail.HandledExceptionDetail;
 import org.springframework.http.HttpStatus;
 
 public final class HandledExceptionFactory {

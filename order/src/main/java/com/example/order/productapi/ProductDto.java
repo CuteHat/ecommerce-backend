@@ -1,4 +1,4 @@
-package com.example.pad.productapi;
+package com.example.order.productapi;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,4 +15,5 @@ public class ProductDto {
     private BigDecimal price;
     private CategoryDto category;
     private Long sellerId;
+    private String sellerEmail;
 }

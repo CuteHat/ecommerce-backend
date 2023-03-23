@@ -1,13 +1,11 @@
 package com.example.pad.service.impl;
 
-import com.example.order.model.OrderCreateRequest;
-import com.example.order.model.OrderItem;
-import com.example.order.persistence.entity.OrderEntity;
-import com.example.order.persistence.entity.OrderItemEntity;
-import com.example.order.persistence.model.OrderStatus;
-import com.example.order.persistence.repository.OrderRepository;
-import com.example.order.productapi.Product;
-import com.example.order.service.OrderService;
+import com.example.pad.model.ProductDtoWrapper;
+import com.example.pad.persistence.entity.OrderEntity;
+import com.example.pad.persistence.entity.OrderItemEntity;
+import com.example.pad.persistence.repository.OrderRepository;
+import com.example.pad.productapi.ProductDto;
+import com.example.pad.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -21,14 +19,15 @@ public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepository;
 
     @Override
-    public OrderEntity persistOrder(OrderCreateRequest request, Long customerId) {
+    public OrderEntity persistOrder(List<ProductDtoWrapper> productDtoWrappers, Long customerId) {
         BigDecimal totalPrice = BigDecimal.ZERO;
         List<OrderItemEntity> orderItemEntities = new ArrayList<>();
 
-        for (OrderItem item : request.getOrderItems()) {
+        for (ProductDtoWrapper item : productDtoWrappers) {
             OrderItemEntity orderItemEntity = new OrderItemEntity();
-            Product product = item.getProduct();
+            ProductDto product = item.getProduct();
             orderItemEntity.setProductId(product.getId());
+            orderItemEntity.setProductName(product.getName());
             orderItemEntity.setProductPrice(product.getPrice());
             orderItemEntity.setQuantity(item.getQuantity());
             orderItemEntity.setSellerId(product.getSellerId());
@@ -40,9 +39,12 @@ public class OrderServiceImpl implements OrderService {
         orderEntity.setCustomerId(customerId);
         orderEntity.setOrderItems(orderItemEntities);
         orderEntity.setTotalPrice(totalPrice);
-        orderEntity.setStatus(OrderStatus.PENDING);
 
         return orderRepository.save(orderEntity);
     }
 
+    @Override
+    public List<OrderEntity> getAll() {
+        return orderRepository.findAll();
+    }
 }

@@ -1,6 +1,5 @@
-package com.example.pad.persistence.model;
+package com.example.pad.model;
 
-import com.example.order.productapi.Product;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,6 +8,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class OrderItem {
-    private Product product;
+    private Long productId;
     private int quantity;
 }

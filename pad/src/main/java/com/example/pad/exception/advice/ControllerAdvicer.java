@@ -1,9 +1,9 @@
-package com.example.product.exception.advice;
+package com.example.pad.exception.advice;
 
-import com.example.product.exception.HandledException;
-import com.example.product.exception.detail.HandledExceptionDetail;
-import com.example.product.exception.detail.ValidationDetail;
-import com.example.product.exception.model.FieldValidationError;
+import com.example.pad.exception.HandledException;
+import com.example.pad.exception.detail.HandledExceptionDetail;
+import com.example.pad.exception.detail.ValidationDetail;
+import com.example.pad.exception.model.FieldValidationError;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
 import lombok.extern.slf4j.Slf4j;
@@ -26,6 +26,11 @@ import java.util.stream.StreamSupport;
 @Slf4j
 @ControllerAdvice
 public class ControllerAdvicer {
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<HandledExceptionDetail> defaultHandler(Exception exception) {
+        log.error(exception.toString());
+        return new ResponseEntity<>(new HandledExceptionDetail("Internal server error"), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 
     @ExceptionHandler(HandledException.class)
     public ResponseEntity<HandledExceptionDetail> handleHandledException(HandledException exception) {

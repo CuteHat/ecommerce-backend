@@ -7,9 +7,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 
 public class JwtAuthenticationToken extends AbstractAuthenticationToken {
-    private final UserDetails subject;
+    private final String subject;
 
-    public JwtAuthenticationToken(UserDetails subject, Collection<? extends GrantedAuthority> authorities) {
+    public JwtAuthenticationToken(String subject, Collection<? extends GrantedAuthority> authorities) {
         super(authorities);
         this.subject = subject;
         setAuthenticated(true);

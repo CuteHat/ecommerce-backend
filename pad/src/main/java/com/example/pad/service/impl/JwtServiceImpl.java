@@ -6,14 +6,16 @@ import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.auth0.jwt.interfaces.JWTVerifier;
 import com.example.pad.config.JwtProperties;
-import com.example.pad.service.JwtValidatorService;
+import com.example.pad.service.JwtService;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
-public class JwtValidatorServiceImpl implements JwtValidatorService {
+public class JwtServiceImpl implements JwtService {
     private final JwtProperties properties;
     private JWTVerifier verifier;
 
@@ -31,8 +33,9 @@ public class JwtValidatorServiceImpl implements JwtValidatorService {
         return verifier.verify(token);
     }
 
-//    public boolean hasAdminRole(DecodedJWT decodedJWT) {
-//        return decodedJWT.getClaim("role").asString().equalsIgnoreCase("administrator");
-//    }
+    @Override
+    public List<String> extractRoles(DecodedJWT decodedJWT) {
+        return decodedJWT.getClaim("roles").asList(String.class);
+    }
 
 }

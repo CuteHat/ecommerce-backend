@@ -1,6 +1,6 @@
-package com.example.product.exception.detail;
+package com.example.pad.exception.detail;
 
-import com.example.product.util.TimestampUtils;
+import com.example.pad.util.TimestampUtils;
 import lombok.Getter;
 import lombok.Setter;
 

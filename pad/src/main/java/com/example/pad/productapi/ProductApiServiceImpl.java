@@ -12,7 +12,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class ProductServiceImpl implements ProductService {
+public class ProductApiServiceImpl implements ProductApiService {
     @Value("${api.product.url}")
     private String baseUrl;
 

@@ -1,10 +1,11 @@
-package com.example.order.persistence.entity;
+package com.example.pad.persistence.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.FieldNameConstants;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -19,6 +20,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "orders")
+@FieldNameConstants
 public class OrderEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

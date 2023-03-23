@@ -1,6 +1,6 @@
-package com.example.product.exception.detail;
+package com.example.pad.exception.detail;
 
-import com.example.product.exception.model.FieldValidationError;
+import com.example.pad.exception.model.FieldValidationError;
 import lombok.Getter;
 
 import java.util.List;

@@ -9,10 +9,10 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class Product {
+public class ProductDto {
     private Long id;
     private String name;
     private BigDecimal price;
-    private Category category;
+    private CategoryDto category;
     private Long sellerId;
 }

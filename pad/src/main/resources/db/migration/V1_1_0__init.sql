@@ -24,7 +24,7 @@ CREATE TABLE order_items
     product_price        DECIMAL     NOT NULL,
     quantity             INTEGER     NOT NULL,
     seller_id            BIGINT      NOT NULL,
-    order_id             BIGINT      NOT NULL,
+    order_id             BIGINT,
     FOREIGN KEY (order_id) REFERENCES orders (id) ON DELETE CASCADE
 );
 

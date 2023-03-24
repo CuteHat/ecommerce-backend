@@ -16,7 +16,7 @@ import java.util.List;
 @Component
 @RequiredArgsConstructor
 @Slf4j
-public class NotificationQueueListener {
+public class ProductQueueListener {
     private final Gson gson;
     private final ProductServiceFacade productServiceFacade;
 
@@ -24,9 +24,9 @@ public class NotificationQueueListener {
     public void receiveMessage(String message) {
         log.info("Received message: " + message);
         String messageBody = new String(message.getBytes(), StandardCharsets.UTF_8);
-        Type notificationListType = new TypeToken<List<DecrementStockDto>>() {
+        Type decrementStocksDtoListType = new TypeToken<List<DecrementStockDto>>() {
         }.getType();
-        List<DecrementStockDto> decrementStockDtos = gson.fromJson(messageBody, notificationListType);
+        List<DecrementStockDto> decrementStockDtos = gson.fromJson(messageBody, decrementStocksDtoListType);
         productServiceFacade.decrementStockBatch(decrementStockDtos);
     }
 }

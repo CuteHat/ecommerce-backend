@@ -31,13 +31,13 @@ public class V1_1_1__insert_data extends BaseJavaMigration {
 
             // Insert products
             List<ProductEntity> products = List.of(
-                    new ProductEntity(null, "Product 1", BigDecimal.valueOf(10), 5, 1L, "seller@example.com", 10, categories.get(0), null, null),
-                    new ProductEntity(null, "Product 2", BigDecimal.valueOf(20), 10, 2L, "seller@example.com", 20, categories.get(1), null, null),
-                    new ProductEntity(null, "Product 3", BigDecimal.valueOf(30), 15, 1L, "seller@example.com", 30, categories.get(0), null, null)
+                    new ProductEntity(null, "Product 1", BigDecimal.valueOf(10), 1L, "seller@example.com", 10, categories.get(0), null, null),
+                    new ProductEntity(null, "Product 2", BigDecimal.valueOf(20), 2L, "seller@example.com", 20, categories.get(1), null, null),
+                    new ProductEntity(null, "Product 3", BigDecimal.valueOf(30), 1L, "seller@example.com", 30, categories.get(0), null, null)
             );
             products.forEach(product -> {
-                String sql = String.format("INSERT INTO products (name, price, quantity, seller_id, seller_email, stock, category_id) VALUES ('%s', %f, %d, %d, '%s', %d, %d)",
-                        product.getName(), product.getPrice(), product.getQuantity(), product.getSellerId(), product.getSellerEmail(), product.getStock(), product.getCategory().getId());
+                String sql = String.format("INSERT INTO products (name, price, seller_id, seller_email, stock, category_id) VALUES ('%s', %f, %d,'%s', %d, %d)",
+                        product.getName(), product.getPrice(), product.getSellerId(), product.getSellerEmail(), product.getStock(), product.getCategory().getId());
                 try {
                     statement.execute(sql);
                 } catch (Exception e) {

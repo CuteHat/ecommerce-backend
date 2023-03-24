@@ -24,7 +24,7 @@ public class ProductDto {
                 product.getId(),
                 product.getName(),
                 product.getPrice(),
-                product.getQuantity(),
+                product.getStock(),
                 product.getSellerId(),
                 CategoryDto.transform(product.getCategory())
         );

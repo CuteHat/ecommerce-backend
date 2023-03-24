@@ -8,6 +8,7 @@ import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.Length;
 
 import java.util.List;
 
@@ -19,6 +20,7 @@ public class OrderCreateRequest {
     @Size(min = 1)
     @Valid
     private List<OrderItem> orderItems;
+    @Length(min = 9, max = 20)
     @NotEmpty
     @Pattern(regexp = "\\d+")
     private String customerPhone;

@@ -19,7 +19,7 @@ public class ProductApiServiceImpl implements ProductApiService {
 
     @Override
     public Boolean stockAvailable(List<DecrementStockDto> products) {
-        String productsFilterEndpoint = "/stock/available/batch";
+        String productsFilterEndpoint = "/product/stock/available/batch";
         return restTemplate.postForObject(
                 baseUrl.concat(productsFilterEndpoint),
                 products,

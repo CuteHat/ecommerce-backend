@@ -22,12 +22,6 @@ public class OrderServiceFacadeImpl implements OrderServiceFacade {
     private final DeliveryService deliveryService;
     private final CourierService courierService;
 
-    /**
-     * Creates a new pending order by fetching products from the product API, persisting the order to the database,
-     * and creating a delivery with the least busy courier.
-     *
-     * @param request the request containing order items and customer id
-     */
     @Override
     @Transactional
     public void createPending(OrderCreateRequest request) {

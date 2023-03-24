@@ -41,14 +41,13 @@ public class NotificationServiceImpl implements NotificationService {
 
         // iterate over seller to products map
         for (Map.Entry<Long, List<ProductDto>> entry : sellerToProductsMap.entrySet()) {
-            Long sellerId = entry.getKey();
             List<ProductDto> products = entry.getValue();
 
             // create email body
             StringBuilder emailBody = new StringBuilder("You have sold the following products: ");
             for (ProductDto product : products) {
                 Integer quantity = productToQuantityMap.get(product.getId());
-                String sellerEmailFormat = "%d - (%d with id %d),";
+                String sellerEmailFormat = "%d - (%s with id %d),";
                 emailBody.append(String.format(sellerEmailFormat, quantity, product.getName(), product.getId()));
             }
 

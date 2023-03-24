@@ -7,6 +7,7 @@ import com.example.order.productapi.ProductApiService;
 import com.example.order.productapi.ProductDto;
 import com.example.order.service.*;
 import com.example.order.util.HandledExceptionFactory;
+import com.example.order.util.SecurityUtils;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -26,9 +27,10 @@ public class OrderServiceFacadeImpl implements OrderServiceFacade {
     private final ProductQueueService productQueueService;
     private final ProductApiService productApiService;
 
+    @Override
     @Transactional
     public void createOrder(OrderCreateRequest request) {
-        Long customerId = 1L; // TODO change with real customer id
+        Long customerId = SecurityUtils.getAuthenticatedUserId();
 
         // validate stock
         checkStock(request);

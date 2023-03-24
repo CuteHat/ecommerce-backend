@@ -23,7 +23,6 @@ public class ProductEntity {
     private Long id;
     private String name;
     private BigDecimal price;
-    private Integer quantity;
     private Long sellerId;
     private String sellerEmail;
     private Integer stock;

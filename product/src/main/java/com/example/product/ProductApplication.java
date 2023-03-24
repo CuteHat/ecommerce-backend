@@ -1,7 +1,9 @@
 package com.example.product;
 
+import com.google.gson.Gson;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class ProductApplication {
@@ -10,4 +12,8 @@ public class ProductApplication {
 		SpringApplication.run(ProductApplication.class, args);
 	}
 
+	@Bean
+	public Gson gson(){
+		return new Gson();
+	}
 }

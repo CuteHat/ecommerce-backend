@@ -2,6 +2,7 @@ package com.example.order.service.impl;
 
 import com.example.order.config.RabbitMQConfig;
 import com.example.order.model.OrderItem;
+import com.example.order.productapi.DecrementStockDto;
 import com.example.order.service.ProductQueueService;
 import com.google.gson.Gson;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +21,7 @@ public class ProductQueueServiceImpl implements ProductQueueService {
     private final Gson gson;
 
     @Override
-    public void decrementStock(List<OrderItem> orderItems) {
+    public void decrementStock(List<DecrementStockDto> orderItems) {
         String json = gson.toJson(orderItems);
         logOutgoingMessage(rabbitMQConfig.getExchangeName(), rabbitMQConfig.getProductRoutingKey(), json);
         rabbitTemplate.convertAndSend(rabbitMQConfig.getExchangeName(), rabbitMQConfig.getProductRoutingKey(), json);

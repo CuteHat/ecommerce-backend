@@ -26,16 +26,17 @@ public class ProductController {
         return ResponseEntity.ok(productServiceFacade.getProduct(id));
     }
 
-    @PutMapping("/{id}/stock")
-    public ResponseEntity<ProductDto> decrementStock(@PathVariable @Min(1) Long id, @RequestParam @Min(1) Integer quantity) {
-        return ResponseEntity.ok(productServiceFacade.decrementStock(id, quantity));
-    }
+    // TODO to admin controller
+//    @PutMapping("/{id}/stock")
+//    public ResponseEntity<ProductDto> decrementStock(@PathVariable @Min(1) Long id, @RequestParam @Min(1) Integer quantity) {
+//        return ResponseEntity.ok(productServiceFacade.decrementStock(id, quantity));
+//    }
 
-    @PutMapping("/stock/batch")
-    public ResponseEntity<Void> decrementStockBatch(@RequestBody List<DecrementStockDto> products) {
-        productServiceFacade.decrementStockBatch(products);
-        return ResponseEntity.ok().build();
-    }
+//    @PutMapping("/stock/batch")
+//    public ResponseEntity<Void> decrementStockBatch(@RequestBody List<DecrementStockDto> products) {
+//        productServiceFacade.decrementStockBatch(products);
+//        return ResponseEntity.ok().build();
+//    }
 
     @GetMapping("/{id}/stock/available")
     public ResponseEntity<Boolean> productStockIsAvailable(@PathVariable @Min(1) Long id, @RequestParam @Min(1) Integer quantity) {

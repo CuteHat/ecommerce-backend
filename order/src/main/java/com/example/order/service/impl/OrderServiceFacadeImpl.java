@@ -45,7 +45,7 @@ public class OrderServiceFacadeImpl implements OrderServiceFacade {
         OrderEntity order = persistOrder(request, customerId, productsMap);
 
         // send order to product queue, decrement product stock
-        productQueueService.decrementStock(request.getOrderItems());
+        productQueueService.decrementStock(request.getOrderItems().stream().map(DecrementStockDto::transform).toList());
 
         // send order to pad queue, create delivery
         PadOrderCreateRequest padOrderCreateRequest = new PadOrderCreateRequest(

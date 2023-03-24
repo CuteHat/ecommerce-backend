@@ -1,7 +1,7 @@
-package com.example.notification.service.impl;
+package com.example.product.service.impl;
 
-import com.example.notification.persistence.model.NotificationDto;
-import com.example.notification.service.NotificationServiceFacade;
+import com.example.product.model.DecrementStockDto;
+import com.example.product.service.ProductServiceFacade;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import lombok.RequiredArgsConstructor;
@@ -13,20 +13,20 @@ import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
-@Slf4j
 @Component
 @RequiredArgsConstructor
+@Slf4j
 public class NotificationQueueListener {
     private final Gson gson;
-    private final NotificationServiceFacade notificationServiceFacade;
+    private final ProductServiceFacade productServiceFacade;
 
-    @RabbitListener(queues = "${rabbitmq.notification.queueName}")
+    @RabbitListener(queues = "${rabbitmq.product.queueName}")
     public void receiveMessage(String message) {
         log.info("Received message: " + message);
         String messageBody = new String(message.getBytes(), StandardCharsets.UTF_8);
-        Type notificationListType = new TypeToken<List<NotificationDto>>() {
+        Type notificationListType = new TypeToken<List<DecrementStockDto>>() {
         }.getType();
-        List<NotificationDto> notifications = gson.fromJson(messageBody, notificationListType);
-        notificationServiceFacade.sendNotifications(notifications);
+        List<DecrementStockDto> decrementStockDtos = gson.fromJson(messageBody, notificationListType);
+        productServiceFacade.decrementStockBatch(decrementStockDtos);
     }
 }

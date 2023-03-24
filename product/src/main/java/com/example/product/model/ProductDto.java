@@ -17,6 +17,7 @@ public class ProductDto {
     private BigDecimal price;
     private Integer quantity;
     private Long sellerId;
+    private String sellerEmail;
     private CategoryDto category;
 
     public static ProductDto transform(ProductEntity product) {
@@ -26,6 +27,7 @@ public class ProductDto {
                 product.getPrice(),
                 product.getStock(),
                 product.getSellerId(),
+                product.getSellerEmail(),
                 CategoryDto.transform(product.getCategory())
         );
     }

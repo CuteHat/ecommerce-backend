@@ -56,6 +56,7 @@ public class NotificationServiceImpl implements NotificationService {
             notificationDto.setType(NotificationType.EMAIL);
             notificationDto.setMessage(emailBody.toString());
             notificationDto.setRecipient(products.get(0).getSellerEmail());
+            sellerNotifications.add(notificationDto);
         }
         return sellerNotifications;
     }

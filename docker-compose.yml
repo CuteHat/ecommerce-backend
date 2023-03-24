@@ -1,7 +1,7 @@
 version: '3.9'
 
 services:
-  postgres-intsance:
+  postgres-instance:
     image: postgres:13.6-bullseye
     restart: always
     container_name: postgres-instance
@@ -27,3 +27,98 @@ services:
       - "15672:15672"
     volumes:
         - ./rabbitmq-data/:/var/lib/rabbitmq/
+
+  iam:
+    container_name: iam_container
+    hostname: iam_service
+    build: ./iam
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: dev
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-instance:5432/db
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: toor  
+    depends_on:
+      - postgres-instance      
+
+  product:
+    container_name: product_container
+    hostname: product_service
+    build: ./product
+    ports:
+      - "8081:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: dev
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-instance:5432/db
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: toor  
+      SPRING_RABBITMQ_HOST: rabbitmq
+      SPRING_RABBITMQ_USERNAME: root
+      SPRING_RABBITMQ_PASSWORD: toor
+      RABBITMQ_PRODUCT_QUEUE_NAME: product.queue      
+    depends_on:
+      - postgres-instance
+
+  notification:
+    container_name: notification_container
+    hostname: notification_service
+    build: ./notification
+    ports:
+      - "8082:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: dev
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-instance:5432/db
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: toor  
+      SPRING_RABBITMQ_HOST: rabbitmq
+      SPRING_RABBITMQ_USERNAME: root
+      SPRING_RABBITMQ_PASSWORD: toor
+      RABBITMQ_NOTIFICATION_QUEUE_NAME: notification.queue      
+    depends_on:
+      - postgres-instance         
+
+  pad:
+    container_name: pad_container
+    hostname: pad_service
+    build: ./pad
+    ports:
+      - "8083:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: dev
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-instance:5432/db
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: toor  
+      SPRING_RABBITMQ_HOST: rabbitmq
+      SPRING_RABBITMQ_USERNAME: root
+      SPRING_RABBITMQ_PASSWORD: toor
+      RABBITMQ_PAD_QUEUE_NAME: pad.queue
+      API_PRODUCT_URL: http://product:8080/api
+    depends_on:
+      - postgres-instance
+      
+  order:
+    container_name: order_container
+    hostname: order_service
+    build: ./order
+    ports:
+      - "8084:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: dev
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-instance:5432/db
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: toor  
+      SPRING_RABBITMQ_HOST: rabbitmq
+      SPRING_RABBITMQ_USERNAME: root
+      SPRING_RABBITMQ_PASSWORD: toor
+      RABBITMQ_PAD_QUEUE_NAME: pad.queue
+      RABBITMQ_EXCHANGE_NAME: amq.direct
+      RABBITMQ_NOTIFICATION_QUEUE_NAME: notification.queue
+      RABBITMQ_NOTIFICATION_ROUTING_KEY: notification
+      RABBITMQ_PAD_QUEUE_NAME: pad.queue
+      RABBITMQ_PAD_ROUTING_KEY: pad
+      RABBITMQ_PRODUCT_QUEUE_NAME: product.queue
+      RABBITMQ_PRODUCT_ROUTING_KEY: product
+      API_PRODUCT_URL: http://product:8080/api
+    depends_on:
+      - postgres-instance      

@@ -21,6 +21,4 @@ public class NotificationEntity {
     @Enumerated(EnumType.STRING)
     private NotificationType type;
     private String recipient;
-    private boolean isRead;
-    private Long userId;
 }

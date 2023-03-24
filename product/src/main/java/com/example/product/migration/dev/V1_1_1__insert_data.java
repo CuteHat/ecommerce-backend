@@ -31,9 +31,9 @@ public class V1_1_1__insert_data extends BaseJavaMigration {
 
             // Insert products
             List<ProductEntity> products = List.of(
-                    new ProductEntity(null, "Product 1", BigDecimal.valueOf(10), 1L, "seller@example.com", 10, categories.get(0), null, null),
-                    new ProductEntity(null, "Product 2", BigDecimal.valueOf(20), 2L, "seller@example.com", 20, categories.get(1), null, null),
-                    new ProductEntity(null, "Product 3", BigDecimal.valueOf(30), 1L, "seller@example.com", 30, categories.get(0), null, null)
+                    new ProductEntity(null, "Product 1", BigDecimal.valueOf(10), 1L, "seller1@example.com", 10, categories.get(0), null, null),
+                    new ProductEntity(null, "Product 2", BigDecimal.valueOf(20), 2L, "seller2@example.com", 20, categories.get(1), null, null),
+                    new ProductEntity(null, "Product 3", BigDecimal.valueOf(30), 1L, "seller3@example.com", 30, categories.get(0), null, null)
             );
             products.forEach(product -> {
                 String sql = String.format("INSERT INTO products (name, price, seller_id, seller_email, stock, category_id) VALUES ('%s', %f, %d,'%s', %d, %d)",

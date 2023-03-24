@@ -1,4 +1,4 @@
-package com.example.order.model;
+package com.example.notification.persistence.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
